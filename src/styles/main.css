@@ -1,0 +1,349 @@
+/* ==========================================================================
+   Almoxarifado de Ferramentas — estilos globais
+   Identidade "oficina / segurança do trabalho": fundo off-white quente, grafite,
+   amarelo de sinalização com acentos pretos e faixa zebrada usada com moderação.
+   ========================================================================== */
+
+:root {
+  /* Cores base */
+  --color-bg: #f7f5f0;
+  --color-surface: #ffffff;
+  --color-surface-2: #efece4;
+  --color-surface-3: #e6e2d7;
+  --color-border: #dcd7cb;
+  --color-border-strong: #b9b3a5;
+  --color-text: #1f2328;
+  --color-text-muted: #5a5f68;
+  --color-text-soft: #80858d;
+  --color-ink: #111315;
+
+  /* Marca */
+  --color-primary: #f5b700;
+  --color-primary-hover: #ffc61a;
+  --color-primary-strong: #c99700;
+  --color-primary-soft: #fff4cc;
+  --color-steel: #5f6b78;
+  --color-steel-soft: #e3e7eb;
+
+  /* Semânticas (texto escuro sobre fundo claro garante contraste AA) */
+  --color-success: #17683f;
+  --color-success-soft: #ddf2e5;
+  --color-warning: #8f4a00;
+  --color-warning-soft: #fdebc8;
+  --color-danger: #b42318;
+  --color-danger-soft: #fde5e2;
+  --color-info: #1b5596;
+  --color-info-soft: #e1ecf8;
+
+  /* Tipografia */
+  --font-display: 'Archivo', 'Arial Narrow', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: clamp(1.6rem, 1.2rem + 1.6vw, 2.25rem);
+  --text-3xl: clamp(2rem, 1.4rem + 2.4vw, 3rem);
+
+  /* Espaçamento (escala de 4px) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  /* Formas e profundidade: cantos discretos, sombras secas */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --shadow-sm: 0 1px 0 rgb(17 19 21 / 0.06);
+  --shadow-md: 0 1px 2px rgb(17 19 21 / 0.06), 0 4px 12px rgb(17 19 21 / 0.06);
+  --shadow-lg: 0 12px 32px rgb(17 19 21 / 0.18);
+  --shadow-hard: 3px 3px 0 var(--color-ink);
+
+  /* Faixa zebrada de sinalização */
+  --hazard: repeating-linear-gradient(
+    -45deg,
+    var(--color-primary) 0 10px,
+    var(--color-ink) 10px 20px
+  );
+
+  /* Movimento */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 140ms;
+  --duration-base: 220ms;
+
+  /* Layout */
+  --container: 1240px;
+  --header-height: 64px;
+  --bottom-nav-height: 64px;
+  --focus-ring: 0 0 0 3px var(--color-surface), 0 0 0 5px var(--color-ink);
+
+  color-scheme: light;
+}
+
+/* ---------- Reset enxuto ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-height) + var(--space-4));
+}
+
+body {
+  min-height: 100dvh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-stretch: 80%;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/* Foco visível e consistente para quem navega pelo teclado */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-sm);
+}
+
+::selection {
+  background: var(--color-primary);
+  color: var(--color-ink);
+}
+
+/* ---------- Utilitários ---------- */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-inline: var(--space-6);
+  }
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.muted {
+  color: var(--color-text-muted);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.hazard-stripe {
+  height: 6px;
+  background: var(--hazard);
+}
+
+/* Cartão base reutilizado pelas telas */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.card__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-lg);
+}
+
+.card__body {
+  padding: var(--space-5);
+}
+
+.link {
+  color: var(--color-text);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--color-primary);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--duration-fast);
+}
+
+.link:hover {
+  text-decoration-color: var(--color-ink);
+}
+
+/* Grade de formulário: 1 coluna no mobile, 2 a partir do tablet */
+.form-grid {
+  display: grid;
+  gap: var(--space-4) var(--space-5);
+}
+
+@media (min-width: 640px) {
+  .form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .form-grid > .span-2 {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Checkbox nativo com a cor da marca */
+input[type='checkbox'],
+input[type='radio'] {
+  accent-color: var(--color-ink);
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+/* ---------- Transições reutilizáveis ---------- */
+
+/* Troca de rotas */
+.pagina-enter-active,
+.pagina-leave-active {
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+
+.pagina-enter-from {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.pagina-leave-to {
+  opacity: 0;
+  transform: translateY(-4px);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity var(--duration-base) var(--ease-out);
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Lista com entrada/saída de itens (TransitionGroup) */
+.lista-enter-active,
+.lista-leave-active {
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
+}
+
+.lista-enter-from,
+.lista-leave-to {
+  opacity: 0;
+  transform: translateX(12px);
+}
+
+.lista-move {
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+/* Respeita quem pediu menos movimento ao sistema operacional */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
