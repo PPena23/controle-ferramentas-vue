@@ -1,0 +1,1 @@
+import{d as e,g as c,a1 as s,w as n,m,o as p,l as r,t as d,O as l}from"./index-D98-TDjI.js";const B=e({__name:"EstadoBadge",props:{estado:{},compacto:{type:Boolean}},setup(t){const a=t,o=m(()=>l[a.estado]);return(i,u)=>(p(),c(s,{tom:o.value.tom,icone:o.value.icone,compacto:t.compacto},{default:n(()=>[r(d(o.value.rotulo),1)]),_:1},8,["tom","icone","compacto"]))}});export{B as _};
